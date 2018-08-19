@@ -1,7 +1,7 @@
 package com.donrwalsh.pogo.controller;
 
-import com.donrwalsh.pogo.repository.DexEntryRepository;
-import com.donrwalsh.pogo.model.DexEntry;
+import com.donrwalsh.pogo.model.Pokemon;
+import com.donrwalsh.pogo.repository.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 public class APIController {
 
     @Autowired
-    private DexEntryRepository dex;
+    private PokemonRepository pokemon;
 
     @RequestMapping(value = "/dex", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin
-    public @ResponseBody Iterable<DexEntry> helloWorld() {
-        return dex.findAll();
+    public @ResponseBody Iterable<Pokemon> helloWorld() {
+        return pokemon.findAll();
 
 
     }

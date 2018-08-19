@@ -3,8 +3,8 @@ package com.donrwalsh.pogo.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "dex_entries")
-public class DexEntry {
+@Table(name = "pokemon")
+public class Pokemon {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
@@ -15,7 +15,7 @@ public class DexEntry {
     private Long def;
     private Long stam;
 
-    protected DexEntry() {}
+    protected Pokemon() {}
 
     public Long getId() {
         return id;

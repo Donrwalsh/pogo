@@ -1,7 +1,7 @@
 package com.donrwalsh.pogo;
 
-import com.donrwalsh.pogo.model.DexEntry;
-import com.donrwalsh.pogo.repository.DexEntryRepository;
+import com.donrwalsh.pogo.model.Pokemon;
+import com.donrwalsh.pogo.repository.PokemonRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +17,11 @@ import static org.junit.Assert.assertEquals;
 public class PogoApplicationTests {
 
 	@Autowired
-	private DexEntryRepository dex;
+	private PokemonRepository pokemon;
 
 	@Test
 	public void findAllDexEntries() {
-		List<DexEntry> pokedex = dex.findAll();
+		List<Pokemon> pokedex = pokemon.findAll();
 		assertEquals(pokedex.size(), 3);
 	}
 
