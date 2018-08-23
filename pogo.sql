@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS pogo;
-CREATE DATABASE pogo;
+CREATE DATABASE pogo CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 use pogo;
 
 CREATE TABLE pokemon (id INT NOT NULL AUTO_INCREMENT, 
@@ -13,7 +13,7 @@ CREATE TABLE pokemon (id INT NOT NULL AUTO_INCREMENT,
             candy INT,
             FOREIGN KEY (candy) REFERENCES pokemon(id),
             PRIMARY KEY ( id ) 
-          );  
+          ) DEFAULT CHARACTER SET  utf8mb4 COLLATE utf8mb4_unicode_ci;  
 
 INSERT INTO pokemon VALUES (NULL, 1, 'Bulbasaur', 118, 118, 90, TRUE, FALSE, 1);
 INSERT INTO pokemon VALUES (NULL, 2, 'Ivysaur', 151, 151, 120, FALSE, FALSE, 1);
@@ -225,7 +225,7 @@ INSERT INTO evolutions VALUES (NULL, 48, 49, 25);
 INSERT INTO evolutions VALUES (NULL, 50, 51, 25);
 INSERT INTO evolutions VALUES (NULL, 51, 52, 100);
 INSERT INTO evolutions VALUES (NULL, 53, 54, 50);
-INSERT INTO evolutions VALUES (NULL, 53, 54, 50);
+INSERT INTO evolutions VALUES (NULL, 55, 56, 50);
 
 CREATE TABLE types (id INT NOT NULL AUTO_INCREMENT,
           pokemon INT,
