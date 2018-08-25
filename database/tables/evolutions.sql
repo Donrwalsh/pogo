@@ -4,7 +4,7 @@ CREATE TABLE evolutions (id INT NOT NULL AUTO_INCREMENT,
             from_id INT,
             to_id INT,
             candy_cost INT,
-            item VARCHAR(20),
+            special VARCHAR(20),
             PRIMARY KEY ( id ),
             FOREIGN KEY (from_id) REFERENCES pokemon(id),
             FOREIGN KEY (to_id) REFERENCES pokemon(id)
@@ -116,3 +116,27 @@ INSERT INTO evolutions VALUES (NULL, 205, 206, 25, '');
 INSERT INTO evolutions VALUES (NULL, 206, 207, 100, '');
 INSERT INTO evolutions VALUES (NULL, 209, 210, 50, 'Sun Stone');
 INSERT INTO evolutions VALUES (NULL, 212, 213, 50, '');
+INSERT INTO evolutions VALUES (NULL, 151, 214, 25, 'Eevee-Daytime');
+INSERT INTO evolutions VALUES (NULL, 151, 215, 25, 'Eevee-Nighttime');
+INSERT INTO evolutions VALUES (NULL, 93, 217, 25, 'King\'s Rock');
+INSERT INTO evolutions VALUES (NULL, 222, 223, 50, '');
+INSERT INTO evolutions VALUES (NULL, 111, 226, 50, 'Metal Coat');
+INSERT INTO evolutions VALUES (NULL, 227, 228, 50, '');
+INSERT INTO evolutions VALUES (NULL, 141, 230, 50, 'Metal Coat');
+INSERT INTO evolutions VALUES (NULL, 234, 235, 50, '');
+INSERT INTO evolutions VALUES (NULL, 236, 237, 50, '');
+INSERT INTO evolutions VALUES (NULL, 238, 239, 50, '');
+INSERT INTO evolutions VALUES (NULL, 241, 242, 50, '');
+INSERT INTO evolutions VALUES (NULL, 246, 247, 50, '');
+INSERT INTO evolutions VALUES (NULL, 135, 248, 100, 'Dragon Scale');
+INSERT INTO evolutions VALUES (NULL, 249, 250, 50, '');
+INSERT INTO evolutions VALUES (NULL, 155, 251, 50, '');
+INSERT INTO evolutions VALUES (NULL, 254, 124, 25, 'Tyrogue-Attack');
+INSERT INTO evolutions VALUES (NULL, 254, 125, 25, 'Tyrogue-Defense');
+INSERT INTO evolutions VALUES (NULL, 254, 255, 25, 'Tyrogue-Stamina');
+INSERT INTO evolutions VALUES (NULL, 256, 142, 25, '');
+INSERT INTO evolutions VALUES (NULL, 257, 143, 25, '');
+INSERT INTO evolutions VALUES (NULL, 258, 144, 25, '');
+INSERT INTO evolutions VALUES (NULL, 131, 260, 50, '');
+INSERT INTO evolutions VALUES (NULL, 264, 265, 25, '');
+INSERT INTO evolutions VALUES (NULL, 265, 266, 100, '');
