@@ -12,6 +12,7 @@ pipeline {
 				dir("database") {
 				    sh 'docker kill database && docker rm database'
 				    sh 'docker-compose up -d'
+				    stash includes: '**/*', name: 'database'
 				}
 				dir("server") {
                     sh 'mvn clean install -Dspring.profiles.active=prod'
@@ -52,6 +53,9 @@ pipeline {
             steps {
 				echo 'Deploying...'
 				node ('prod') {
+				    unstash "database"
+				    sh 'docker kill database && docker rm database'
+				    sh 'docker-compose up -d'
 					unstash "JAR"
 					sh 'pkill -f pogo || true'
 					script {
