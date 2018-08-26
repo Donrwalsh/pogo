@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS `types`;
-
 CREATE TABLE types (id INT NOT NULL AUTO_INCREMENT,
           pokemon INT,
           type VARCHAR(20),

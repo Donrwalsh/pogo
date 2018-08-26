@@ -1,5 +1,3 @@
-DROP TABLE IF EXISTS evolutions;
-
 CREATE TABLE evolutions (id INT NOT NULL AUTO_INCREMENT,
             from_id INT,
             to_id INT,
