@@ -24,6 +24,9 @@ pipeline {
 						archiveArtifacts artifacts: '**/*.*', fingerprint:true
 					}
 				}
+				dir("database") {
+				    sh 'docker-compose up'
+				}
 				
             }
         }
