@@ -22,7 +22,7 @@ public class PogoApplicationTests {
 	@Test
 	public void findAllDexEntries() {
 		List<Pokemon> pokedex = pokemon.findAll();
-		assertEquals(pokedex.size(), 3);
+		assertEquals(pokedex.size(), 307);
 	}
 
 	@Test
