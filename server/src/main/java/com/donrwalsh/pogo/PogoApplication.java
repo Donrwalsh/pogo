@@ -25,6 +25,10 @@ public class PogoApplication implements CommandLineRunner {
 
 	@Override
     public void run(String... args) throws Exception {
-        System.out.println("Hello there");
+
+	    logger.info("Pokemon id 151 -> {}", pokemon.findById(151L));
+
+	    logger.info("All pokemon -> {}", pokemon.findAll());
+
     }
 }

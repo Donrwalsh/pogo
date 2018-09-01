@@ -64,4 +64,10 @@ public class Pokemon {
     public void setStam(Long stam) {
         this.stam = stam;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Pokemon [id=%s, number=%s, name=%s, atk=%s, def=%s, stam=%s]",
+                id,number, name, atk, def, stam);
+    }
 }
