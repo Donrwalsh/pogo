@@ -1,6 +1,8 @@
 package com.donrwalsh.pogo.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "pokemon")
@@ -14,6 +16,23 @@ public class Pokemon {
     private Long atk;
     private Long def;
     private Long stam;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "pokemon")
+    private List<Type> types;
+
+    public List<String> getTypes() {
+        ArrayList<String> output = new ArrayList<String>();
+
+        for(int i = 0; i < types.size(); i++) {
+            output.add(types.get(i).getType());
+        }
+        return output;
+    }
+
+    public void setTypes(List<Type> types) {
+        this.types = types;
+    }
 
     protected Pokemon() {}
 
