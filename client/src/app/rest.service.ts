@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { environment } from '../environments/environment';
 import { map, catchError, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class RestService {
 
   constructor(private http: HttpClient) { }
 
-  readonly endpoint = 'http://localhost:8080/';
+  readonly endpoint = environment.apiUrl;
   readonly httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json'
@@ -23,6 +24,7 @@ export class RestService {
   }
 
   getPokemon(): Observable<any> {
+    console.log(this.endpoint);
     return this.http.get(this.endpoint + 'dex').pipe(
       map(this.extractData));
   }
