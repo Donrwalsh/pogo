@@ -12,6 +12,6 @@ import java.util.List;
 public interface PokemonRepository extends PagingAndSortingRepository<Pokemon, Long> {
 
     List<Pokemon> findAll();
-    Page<Pokemon> findByTypesTypeLike(String type, Pageable pageable);
+    Page<Pokemon> findByTypesType(String type, Pageable pageable);
 
 }
