@@ -14,7 +14,16 @@ pipeline {
 				    sh 'docker-compose up -d'
 				    stash includes: '**/*', name: 'database'
 				}
-				sh 'sleep 20'
+				script {
+					timeout(5) {
+						waitUntil {
+							def r = sh script: 'docker inspect -f {{.State.Running}} database'
+							echo r
+							
+							return (r == 'true');
+						}
+					}
+				}
 				dir("server") {
                     sh 'mvn clean install -Dspring.profiles.active=prod'
 					
