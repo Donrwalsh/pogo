@@ -20,7 +20,7 @@ pipeline {
 							def r = sh script: 'docker inspect -f {{.State.Running}} database'
 							echo r
 							
-							return (r == "true");
+							return (r.equals("true"));
 						}
 					}
 				}
