@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-				echo 'Testing...'
+				echo 'Staging...'
 
 				unstash "JAR"
 				sh 'pkill -f pogo || true'
@@ -46,6 +46,22 @@ pipeline {
 				dir("/var/www/html") {
 					unstash "frontend"
 				}
+				sh 'sleep 20'
+				script {
+					timeout(5) {
+						waitUntil {
+							def sanity = sh returnStdout: true, script: 'curl -I -s http://192.168.33.10:8080/sanity | grep "HTTP/1.1"'
+							
+							return sanity.contains("HTTP/1.1 200 OK")
+						}
+					}
+				}
+
+				echo "Testing..."
+				dir("server") {
+					sh 'mvn clean test -Dtest=KarateTests -DargLine=\\"-Dkarate.env=stg\\"'
+				}
+
 				
 			}
 		}

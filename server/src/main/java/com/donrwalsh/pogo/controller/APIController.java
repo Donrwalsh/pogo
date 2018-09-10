@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,10 @@ public class APIController {
     private PokemonRepository pokemon;
     @Autowired
     private TypesRepository types;
+
+    @RequestMapping(value = "/sanity")
+    @ResponseStatus(HttpStatus.OK)
+    void sanity() throws Exception {}
 
     @RequestMapping(value = "/dex", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin
