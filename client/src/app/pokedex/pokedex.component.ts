@@ -25,7 +25,7 @@ export class PokedexComponent implements OnInit {
     this.pokemon = [];
     this.rest.getPokemon().subscribe((data: {}) => {
       console.log(data);
-      this.pokemon = data;
+      this.pokemon = data.content;
     });
   }
 
