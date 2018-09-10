@@ -14,6 +14,7 @@ pipeline {
 				    sh 'docker-compose up -d'
 				    stash includes: '**/*', name: 'database'
 				}
+				sh 'sleep 20'
 				dir("server") {
                     sh 'mvn clean install -Dspring.profiles.active=prod'
 					
