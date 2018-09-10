@@ -18,7 +18,7 @@ pipeline {
 					timeout(5) {
 						waitUntil {
 							def r = sh returnStdout: true, script: 'docker inspect -f {{.State.Running}} database'
-							return (r.equalsIgnoreCase("true"));
+							return r.contains("true");
 						}
 					}
 				}
