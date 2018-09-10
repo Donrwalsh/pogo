@@ -1,4 +1,4 @@
-package feature.tests;
+package features;
 
 import com.intuit.karate.junit4.Karate;
 import cucumber.api.CucumberOptions;
