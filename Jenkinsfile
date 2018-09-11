@@ -58,7 +58,7 @@ pipeline {
 				script {
 					timeout(5) {
 						waitUntil {
-							def sanity = sh returnStdout: true, script: 'curl -I -s http://192.168.33.10:8080/sanity | grep "HTTP/1.1"'
+							def sanity = sh returnStdout: true, script: 'curl -I -s http://localhost:8080/sanity | grep "HTTP/1.1"'
 							
 							return sanity.contains("HTTP/1.1 200 OK")
 						}
