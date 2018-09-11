@@ -105,7 +105,7 @@
 			<testResource>
 				<directory>src/test/java</directory>
 				<excludes>
-					<exclude>**/*.java</exclude>
+					<exclude>KarateTests.java</exclude>
 				</excludes>
 			</testResource>
 		</testResources>
