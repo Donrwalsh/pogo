@@ -3,7 +3,7 @@ function() {
     if (env == 'dev') {
         var apiURL = 'http://localhost:8080'
     } else if (env == 'stg') {
-        var apiURL = 'http://192.168.33.10:8080'
+        var apiURL = 'http://localhost:8080'
     }
     var config = {
         apiURL: apiURL
