@@ -60,7 +60,7 @@ pipeline {
 						waitUntil {
 							def sanity = sh returnStdout: true, script: 'curl -I -s http://localhost:8080/sanity | grep "HTTP/1.1"'
 							
-							return sanity.contains("HTTP/1.1 200 OK")
+							return sanity.contains("HTTP/1.1 200")
 						}
 					}
 				}
