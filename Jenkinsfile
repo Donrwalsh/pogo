@@ -67,7 +67,7 @@ pipeline {
 
 				echo "Testing..."
 				dir("server") {
-					sh 'mvn clean test -Dtest=KarateTests -DargLine=\\"-Dkarate.env=stg\\"'
+					sh 'mvn clean test -Dtest=Integration -DargLine=\\"-Dkarate.env=stg\\"'
 				}
 
 				
