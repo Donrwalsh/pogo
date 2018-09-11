@@ -1,4 +1,4 @@
-package features;
+package com.donrwalsh.pogo;
 
 import com.intuit.karate.junit4.Karate;
 import cucumber.api.CucumberOptions;
