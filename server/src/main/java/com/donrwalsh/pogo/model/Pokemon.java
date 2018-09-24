@@ -21,13 +21,8 @@ public class Pokemon {
     @JoinColumn(name = "pokemon")
     private List<Type> types;
 
-    public List<String> getTypes() {
-        ArrayList<String> output = new ArrayList<String>();
-
-        for(int i = 0; i < types.size(); i++) {
-            output.add(types.get(i).getType());
-        }
-        return output;
+    public List<Type> getTypes() {
+        return this.types;
     }
 
     public void setTypes(List<Type> types) {
