@@ -14,6 +14,14 @@ pipeline {
 				    sh 'docker-compose up -d'
 				    stash includes: '**/*', name: 'database'
 				}
+				script {
+					timeout(5) {
+						waitUntil {
+							def r = sh returnStdout: true, script: 'docker inspect -f {{.State.Running}} database'
+							return r.contains("true");
+						}
+					}
+				}
 				dir("server") {
                     sh 'mvn clean install -Dspring.profiles.active=prod'
 					
@@ -34,7 +42,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-				echo 'Testing...'
+				echo 'Staging...'
 
 				unstash "JAR"
 				sh 'pkill -f pogo || true'
@@ -46,6 +54,22 @@ pipeline {
 				dir("/var/www/html") {
 					unstash "frontend"
 				}
+				sh 'sleep 20'
+				script {
+					timeout(5) {
+						waitUntil {
+							def sanity = sh returnStdout: true, script: 'curl -I -s http://localhost:8080/sanity | grep "HTTP/1.1"'
+							
+							return sanity.contains("HTTP/1.1 200")
+						}
+					}
+				}
+
+				echo "Testing..."
+				dir("server") {
+					sh 'mvn clean test -Dtest=Integration -DargLine=\\"-Dkarate.env=stg\\"'
+				}
+
 				
 			}
 		}
@@ -70,9 +94,9 @@ pipeline {
             }
         }
     }
-	post {
-        always {
-            deleteDir() /* clean up our workspace */
-        }        
-    }
+ // 	 post {
+ //        always {
+ //            deleteDir()  clean up our workspace 
+ //        }        
+ //    }
 }
