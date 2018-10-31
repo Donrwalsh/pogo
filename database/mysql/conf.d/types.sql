@@ -14,7 +14,7 @@ INSERT INTO types VALUES (NULL, 3, 'Poison');
 INSERT INTO types VALUES (NULL, 4, 'Fire');
 INSERT INTO types VALUES (NULL, 5, 'Fire');
 INSERT INTO types VALUES (NULL, 6, 'Fire');
-INSERT INTO types VALUES (NULL, 6, 'Fire');
+INSERT INTO types VALUES (NULL, 6, 'Flying');
 INSERT INTO types VALUES (NULL, 7, 'Water');
 INSERT INTO types VALUES (NULL, 8, 'Water');
 INSERT INTO types VALUES (NULL, 9, 'Water');

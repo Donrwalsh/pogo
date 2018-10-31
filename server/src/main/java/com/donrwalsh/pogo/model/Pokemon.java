@@ -21,6 +21,18 @@ public class Pokemon {
     @JoinColumn(name = "pokemon")
     private List<Type> types;
 
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "from_id")
+    private List<Evolution> from_evolutions;
+
+    public List<Evolution> getFrom_evolutions() {
+        return from_evolutions;
+    }
+
+    public void setFrom_evolutions(List<Evolution> from_evolutions) {
+        this.from_evolutions = from_evolutions;
+    }
+
     public List<Type> getTypes() {
         return this.types;
     }

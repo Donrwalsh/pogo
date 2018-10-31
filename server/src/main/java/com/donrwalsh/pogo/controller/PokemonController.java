@@ -1,6 +1,7 @@
 package com.donrwalsh.pogo.controller;
 
 import com.donrwalsh.pogo.dao.PokemonDao;
+import com.donrwalsh.pogo.model.Pokemon;
 import com.donrwalsh.pogo.service.DexService;
 import com.donrwalsh.pogo.service.PokemonService;
 import org.springframework.http.MediaType;
@@ -24,7 +25,7 @@ public class PokemonController {
 
     @RequestMapping(value = "/pokemon/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    PokemonDao pokedex(
+    Pokemon pokedex(
             @PathVariable("id") Long id
     ) {
         return pokemonService.get(id);

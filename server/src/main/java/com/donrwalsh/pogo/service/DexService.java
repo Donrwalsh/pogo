@@ -1,5 +1,6 @@
 package com.donrwalsh.pogo.service;
 
+import com.donrwalsh.pogo.dao.PokemonDao;
 import com.donrwalsh.pogo.model.Pokemon;
 import com.donrwalsh.pogo.repository.PokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +16,20 @@ public class DexService {
     @Autowired
     private PokemonRepository pokemon;
 
-    public Page<Pokemon> dexParamMapper(int page, int size, String type) {
+    public Page<PokemonDao> dexParamMapper(int page, int size, String type) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
         if (type.equals("")) {
-            return pokemon.findAll(pageable);
+            Page<Pokemon> interim = pokemon.findAll(pageable);
+            Page<PokemonDao> result = interim.map(this::transformToDao);
+            return result;
         } else {
-            return pokemon.findByTypesType(type, pageable);
+            Page<Pokemon> interim = pokemon.findByTypesType(type, pageable);
+            Page<PokemonDao> result = interim.map(this::transformToDao);
+            return result;
         }
+    }
+
+    public PokemonDao transformToDao(final Pokemon pokemon) {
+        return new PokemonDao(pokemon);
     }
 }

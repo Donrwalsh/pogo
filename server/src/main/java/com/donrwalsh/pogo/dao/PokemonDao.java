@@ -14,6 +14,16 @@ public class PokemonDao {
     private Long def;
     private Long stam;
 
+    public Object getEvolve() {
+        return evolve;
+    }
+
+    public void setEvolve(Object evolve) {
+        this.evolve = evolve;
+    }
+
+    private Object evolve;
+
     private List<String> types;
 
     public PokemonDao(Pokemon source) {
@@ -25,10 +35,19 @@ public class PokemonDao {
         this.stam = source.getStam();
 
         this.types = new ArrayList<>();
+        this.evolve = new ArrayList<>();
 
         for (int i = 0; i < source.getTypes().size(); i++) {
             this.types.add(source.getTypes().get(i).getType());
         }
+//        if (!source.getFrom_evolutions().isEmpty()) {
+//            for (int i = 0; i < source.getFrom_evolutions().size(); i++) {
+//                this.evolve = source.getFrom_evolutions().get(i);
+//            }
+//        }
+//            this.evolve = {source.getFrom_evolutions();
+//        }
+
     }
 
     public List<String> getTypes() {

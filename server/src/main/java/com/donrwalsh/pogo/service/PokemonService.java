@@ -16,10 +16,10 @@ public class PokemonService {
     private PokemonRepository pokemon;
 
     @Transactional
-    public PokemonDao get(Long id) {
+    public Pokemon get(Long id) {
         Optional<Pokemon> dude = pokemon.findById(id);
         PokemonDao daoObj = new PokemonDao(dude.get());
-        return daoObj;
+        return dude.get();
     }
 
 }

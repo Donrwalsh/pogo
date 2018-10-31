@@ -1,5 +1,6 @@
 package com.donrwalsh.pogo.controller;
 
+import com.donrwalsh.pogo.dao.PokemonDao;
 import com.donrwalsh.pogo.model.Pokemon;
 import com.donrwalsh.pogo.model.Type;
 import com.donrwalsh.pogo.repository.PokemonRepository;
@@ -40,7 +41,7 @@ public class APIController {
     @RequestMapping(value = "/dex", produces = MediaType.APPLICATION_JSON_VALUE)
     @CrossOrigin
     public @ResponseBody
-    Page<Pokemon> pokedex(
+    Page<PokemonDao> pokedex(
             @RequestParam(defaultValue="0") int page,
             @RequestParam(defaultValue="20") int size,
             @RequestParam(defaultValue="") String type
