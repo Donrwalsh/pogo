@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @RestController
 public class PokemonController {
@@ -33,7 +34,7 @@ public class PokemonController {
     Page<PokemonDao> pokedex(
             @RequestParam(defaultValue="0") int page,
             @RequestParam(defaultValue="20") int size,
-            @RequestParam(defaultValue="") String type
+            @RequestParam(defaultValue="") List<String> type
     ) {
         return pokemonService.dexParamMapper(page, size, type);
     }

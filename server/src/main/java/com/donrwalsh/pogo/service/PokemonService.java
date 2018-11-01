@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.donrwalsh.pogo.dao.PokemonDao;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -33,14 +34,14 @@ public class PokemonService {
     }
 
     @Transactional
-    public Page<PokemonDao> dexParamMapper(int page, int size, String type) {
+    public Page<PokemonDao> dexParamMapper(int page, int size, List<String> types) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
-        if (type.equals("")) {
+        if (types.size() == 0) {
             Page<Pokemon> interim = pokemon.findAll(pageable);
             Page<PokemonDao> result = interim.map(this::transformToDao);
             return result;
         } else {
-            Page<Pokemon> interim = pokemon.findByTypesType(type, pageable);
+            Page<Pokemon> interim = pokemon.findByTypesTypeIn(types, pageable);
             Page<PokemonDao> result = interim.map(this::transformToDao);
             return result;
         }

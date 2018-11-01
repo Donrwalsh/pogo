@@ -11,7 +11,7 @@ import java.util.Optional;
 public interface PokemonRepository extends PagingAndSortingRepository<Pokemon, Long> {
 
     List<Pokemon> findAll();
-    Page<Pokemon> findByTypesType(String type, Pageable pageable);
+    Page<Pokemon> findByTypesTypeIn(List<String> types, Pageable pageable);
     Optional<Pokemon> findById(Long id);
 
 }
