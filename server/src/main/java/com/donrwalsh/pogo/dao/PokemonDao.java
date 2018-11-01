@@ -14,6 +14,24 @@ public class PokemonDao {
     private Long def;
     private Long stam;
     private List<String> types;
+    private int gen;
+    private boolean shiny;
+
+    public int getGen() {
+        return gen;
+    }
+
+    public void setGen(int gen) {
+        this.gen = gen;
+    }
+
+    public boolean isShiny() {
+        return shiny;
+    }
+
+    public void setShiny(boolean shiny) {
+        this.shiny = shiny;
+    }
 
     public PokemonDao(Pokemon source) {
         this.id = source.getId();
@@ -22,6 +40,8 @@ public class PokemonDao {
         this.atk = source.getAtk();
         this.def = source.getDef();
         this.stam = source.getStam();
+        this.gen = source.getGen();
+        this.shiny = source.isShiny();
 
         this.types = new ArrayList<>();
 

@@ -21,6 +21,25 @@ public class Pokemon {
     @JoinColumn(name = "pokemon")
     private List<Type> types;
 
+    private int gen;
+    private boolean shiny;
+
+    public int getGen() {
+        return gen;
+    }
+
+    public void setGen(int gen) {
+        this.gen = gen;
+    }
+
+    public boolean isShiny() {
+        return shiny;
+    }
+
+    public void setShiny(boolean shiny) {
+        this.shiny = shiny;
+    }
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "from_id")
     private List<Evolution> from_evolutions;

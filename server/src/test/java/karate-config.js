@@ -14,12 +14,28 @@ function() {
             def: '#number',
             stam: '#number',
             types: '#array',
+            gen: '#number',
+            shiny: '#boolean'
+        };
+
+    var pagedObject =
+        {   content: '#array',
+            pageable: '#object',
+            last: '#boolean',
+            totalElements: '#number',
+            totalPages: '#number',
+            size: '#number',
+            number: '#number',
+            sort: '#object',
+            numberOfElements: '#number',
+            first: '#boolean'
         };
 
 
     var config = {
         apiURL: apiURL,
-        pokemonObject: pokemonObject
+        pokemonObject: pokemonObject,
+        pagedObject: pagedObject
     };
 
     karate.configure('connectTimeout', 5000);
