@@ -25,7 +25,16 @@ public class PokemonController {
 
     @RequestMapping(value = "/pokemon/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    Pokemon pokedex(
+    PokemonDao pokemon(
+            @PathVariable("id") Long id
+    ) {
+        return pokemonService.getDao(id);
+    }
+
+    //This is a temporary endpoint for use in troubleshooting the raw pokemon object
+    @RequestMapping(value = "/pokemon_raw/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    Pokemon rawPokemon(
             @PathVariable("id") Long id
     ) {
         return pokemonService.get(id);

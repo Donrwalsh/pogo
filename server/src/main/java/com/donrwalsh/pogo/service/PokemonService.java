@@ -18,8 +18,14 @@ public class PokemonService {
     @Transactional
     public Pokemon get(Long id) {
         Optional<Pokemon> dude = pokemon.findById(id);
-        PokemonDao daoObj = new PokemonDao(dude.get());
         return dude.get();
+    }
+
+    @Transactional
+    public PokemonDao getDao(Long id) {
+        Optional<Pokemon> dude = pokemon.findById(id);
+        PokemonDao daoObj = new PokemonDao(dude.get());
+        return daoObj;
     }
 
 }
