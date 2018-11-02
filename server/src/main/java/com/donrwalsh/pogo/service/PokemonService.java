@@ -34,17 +34,32 @@ public class PokemonService {
     }
 
     @Transactional
-    public Page<PokemonDao> dexParamMapper(int page, int size, List<String> types) {
+    public Page<PokemonDao> dexParamMapper(int page, int size, List<String> types, Optional<Boolean> shiny) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
-        if (types.size() == 0) {
-            Page<Pokemon> interim = pokemon.findAll(pageable);
-            Page<PokemonDao> result = interim.map(this::transformToDao);
-            return result;
+        Page<Pokemon> interim;
+        if (!shiny.isPresent()) {
+            if (types.size() == 0) {
+                interim = pokemon.findAll(pageable); //!shin.isPresent() type
+            } else {
+                interim = pokemon.findByTypesTypeIn(types, pageable);
+            }
         } else {
-            Page<Pokemon> interim = pokemon.findByTypesTypeIn(types, pageable);
-            Page<PokemonDao> result = interim.map(this::transformToDao);
-            return result;
+            if (shiny.get()) {
+                if (types.size() == 0) {
+                    interim = pokemon.findAllByShinyTrue(pageable);
+                } else {
+                    interim = pokemon.findByTypesTypeInAndShinyTrue(types, pageable);
+                }
+            } else {
+                if (types.size() == 0) {
+                    interim = pokemon.findAllByShinyFalse(pageable);
+                } else {
+                    interim = pokemon.findByTypesTypeInAndShinyFalse(types, pageable);
+                }
+            }
         }
+        return interim.map(this::transformToDao);
+
     }
 
     public PokemonDao transformToDao(final Pokemon pokemon) {

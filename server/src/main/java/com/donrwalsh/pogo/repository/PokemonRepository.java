@@ -12,6 +12,10 @@ public interface PokemonRepository extends PagingAndSortingRepository<Pokemon, L
 
     List<Pokemon> findAll();
     Page<Pokemon> findByTypesTypeIn(List<String> types, Pageable pageable);
+    Page<Pokemon> findByTypesTypeInAndShinyTrue(List<String> types, Pageable pageable);
+    Page<Pokemon> findByTypesTypeInAndShinyFalse(List<String> types, Pageable pageable);
+    Page<Pokemon> findAllByShinyTrue(Pageable pageable);
+    Page<Pokemon> findAllByShinyFalse(Pageable pageable);
     Optional<Pokemon> findById(Long id);
 
 }
