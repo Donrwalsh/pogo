@@ -2,7 +2,6 @@ package com.donrwalsh.pogo.controller;
 
 import com.donrwalsh.pogo.dao.PokemonDao;
 import com.donrwalsh.pogo.service.PokemonService;
-import com.sun.javafx.scene.control.behavior.OptionalBoolean;
 import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -37,9 +36,10 @@ public class PokemonController {
             @RequestParam(defaultValue="0") int page,
             @RequestParam(defaultValue="20") int size,
             @RequestParam(defaultValue="") List<String> type,
-            @RequestParam(required=false) Optional<Boolean> shiny
+            @RequestParam(required=false) Optional<Boolean> shiny,
+            @RequestParam(required=false) Optional<Integer> gen
     ) {
-        return pokemonService.dexParamMapper(page, size, type, shiny);
+        return pokemonService.dexParamMapper(page, size, type, shiny, gen);
     }
     
 }

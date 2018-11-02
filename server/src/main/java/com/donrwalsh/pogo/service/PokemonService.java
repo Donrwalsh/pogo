@@ -34,27 +34,51 @@ public class PokemonService {
     }
 
     @Transactional
-    public Page<PokemonDao> dexParamMapper(int page, int size, List<String> types, Optional<Boolean> shiny) {
+    public Page<PokemonDao> dexParamMapper(int page, int size, List<String> types, Optional<Boolean> shiny, Optional<Integer> gen) {
         Pageable pageable = PageRequest.of(page, size, Sort.by("id").ascending());
         Page<Pokemon> interim;
         if (!shiny.isPresent()) {
             if (types.size() == 0) {
-                interim = pokemon.findAll(pageable); //!shin.isPresent() type
+                if (!gen.isPresent()) {
+                    interim = pokemon.findAll(pageable); //!shin.isPresent() type
+                } else {
+                    interim = pokemon.findAllByGen(gen.get(), pageable);
+                }
             } else {
-                interim = pokemon.findByTypesTypeIn(types, pageable);
+                if (!gen.isPresent()) {
+                    interim = pokemon.findAllByTypesTypeIn(types, pageable);
+                } else {
+                    interim = pokemon.findAllByTypesTypeInAndGen(types, gen.get(), pageable);
+                }
             }
         } else {
             if (shiny.get()) {
                 if (types.size() == 0) {
-                    interim = pokemon.findAllByShinyTrue(pageable);
+                    if (!gen.isPresent()) {
+                        interim = pokemon.findAllByShinyTrue(pageable);
+                    } else {
+                        interim = pokemon.findAllByShinyTrueAndGen(gen.get(), pageable);
+                    }
                 } else {
-                    interim = pokemon.findByTypesTypeInAndShinyTrue(types, pageable);
+                    if (!gen.isPresent()) {
+                        interim = pokemon.findAllByTypesTypeInAndShinyTrue(types, pageable);
+                    } else {
+                        interim = pokemon.findAllByTypesTypeInAndShinyTrueAndGen(types, gen.get(), pageable);
+                    }
                 }
             } else {
                 if (types.size() == 0) {
-                    interim = pokemon.findAllByShinyFalse(pageable);
+                    if (!gen.isPresent()) {
+                        interim = pokemon.findAllByShinyFalse(pageable);
+                    } else {
+                        interim = pokemon.findAllByShinyFalseAndGen(gen.get(), pageable);
+                    }
                 } else {
-                    interim = pokemon.findByTypesTypeInAndShinyFalse(types, pageable);
+                    if (!gen.isPresent()) {
+                        interim = pokemon.findAllByTypesTypeInAndShinyFalse(types, pageable);
+                    } else {
+                        interim = pokemon.findAllByTypesTypeInAndShinyFalseAndGen(types, gen.get(), pageable);
+                    }
                 }
             }
         }
