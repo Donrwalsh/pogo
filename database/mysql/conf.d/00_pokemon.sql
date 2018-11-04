@@ -9,7 +9,7 @@ CREATE TABLE pokemon (id INT NOT NULL AUTO_INCREMENT,
             in_game TINYINT(1), 
             shiny TINYINT(1), 
             PRIMARY KEY ( id ) 
-            ) DEFAULT CHARACTER SET  utf8mb4 COLLATE utf8mb4_unicode_ci;  
+            ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;  
 
 INSERT INTO pokemon VALUES (1, 1, 'Bulbasaur', 118, 118, 90, 981, 1, TRUE, TRUE);
 INSERT INTO pokemon VALUES (2, 2, 'Ivysaur', 151, 151, 120, 1552, 1, TRUE, TRUE);
