@@ -1,9 +1,9 @@
 CREATE TABLE types (id INT NOT NULL AUTO_INCREMENT, 
             pokemon INT, 
             type VARCHAR(20), 
-            PRIMARY KEY ( id )
+            PRIMARY KEY ( id ),
             FOREIGN KEY (pokemon) REFERENCES pokemon(id)
-            );
+            ) DEFAULT CHARACTER SET  utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 INSERT INTO types VALUES(1, 1, 'Grass');
 INSERT INTO types VALUES(2, 1, 'Poison');

@@ -10,12 +10,14 @@ class Writer(object):
     zero_path = "../database/mysql/conf.d/00_pokemon.sql"
     types_path = "../database/mysql/conf.d/types.sql"
     moves_path = "../database/mysql/conf.d/moves.sql"
+    record_path = "../database/mysql/conf.d/record.sql"
 
     @classmethod
     def clean(cls):
         remove_if_exists(cls.zero_path)
         remove_if_exists(cls.types_path)
         remove_if_exists(cls.moves_path)
+        remove_if_exists(cls.record_path)
 
     @classmethod
     def output_append(cls, path, statement):
@@ -44,4 +46,15 @@ class Writer(object):
                           "            type VARCHAR(20), \n"
                           "            PRIMARY KEY ( id ),\n"
                           "            FOREIGN KEY (pokemon) REFERENCES pokemon(id)\n"
-                          "            );\n\n")
+                          "            ) DEFAULT CHARACTER SET  utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n")
+
+        cls.output_append(cls.record_path,
+                          "CREATE TABLE record (id INT NOT NULL AUTO_INCREMENT, \n"
+                          "            pokemon INT, \n"
+                          "            level INT, \n"
+                          "            iv_atk INT, \n"
+                          "            iv_def INT, \n"
+                          "            iv_stam INT, \n"
+                          "            PRIMARY KEY ( id ),\n"
+                          "            FOREIGN KEY (pokemon) REFERENCES pokemon(id)\n"
+                          "            ) DEFAULT CHARACTER SET  utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n")
