@@ -86,6 +86,9 @@ class Pokemon(object):
                 return "TRUE"
         return "FALSE"
 
+    def get_type(self, pos):
+        return "'" + self.data['types'][pos]['name'] + "'"
+
 
 
 
