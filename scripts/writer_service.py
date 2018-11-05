@@ -47,6 +47,15 @@ class Writer(object):
                           "            PRIMARY KEY ( id ),\n"
                           "            FOREIGN KEY (pokemon) REFERENCES pokemon(id)\n"
                           "            ) DEFAULT CHARACTER SET  utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n")
+        cls.output_append(cls.moves_path,
+                          "CREATE TABLE moves (id INT NOT NULL AUTO_INCREMENT, \n"
+                          "            name VARCHAR(20), \n"
+                          "            power INT, \n"
+                          "            cooldown INT, \n"
+                          "            type VARCHAR(20), \n"
+                          "            style VARCHAR(20), \n"
+                          "            PRIMARY KEY ( id )\n"
+                          "            ) DEFAULT CHARACTER SET  utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n")
 
         cls.output_append(cls.record_path,
                           "CREATE TABLE record (id INT NOT NULL AUTO_INCREMENT, \n"
