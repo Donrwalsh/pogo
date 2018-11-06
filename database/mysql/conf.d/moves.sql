@@ -5,7 +5,7 @@ CREATE TABLE moves (id INT NOT NULL AUTO_INCREMENT,
             type VARCHAR(20), 
             style VARCHAR(20), 
             PRIMARY KEY ( id )
-            ) DEFAULT CHARACTER SET  utf8mb4 COLLATE utf8mb4_unicode_ci;
+            ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 INSERT INTO moves VALUES(1, 'Wrap', 60, 2900, 'Normal', 'Charge');
 INSERT INTO moves VALUES(2, 'Hyper Beam', 150, 3800, 'Normal', 'Charge');

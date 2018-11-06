@@ -1,4 +1,3 @@
-import sys
 import os
 
 def remove_if_exists(path):
@@ -10,6 +9,7 @@ class Writer(object):
     zero_path = "../database/mysql/conf.d/00_pokemon.sql"
     types_path = "../database/mysql/conf.d/types.sql"
     moves_path = "../database/mysql/conf.d/moves.sql"
+    pkmn_mvs_path = "../database/mysql/conf.d/pkmn_mvs.sql"
     record_path = "../database/mysql/conf.d/record.sql"
 
     @classmethod
@@ -17,6 +17,7 @@ class Writer(object):
         remove_if_exists(cls.zero_path)
         remove_if_exists(cls.types_path)
         remove_if_exists(cls.moves_path)
+        remove_if_exists(cls.pkmn_mvs_path)
         remove_if_exists(cls.record_path)
 
     @classmethod
@@ -46,7 +47,7 @@ class Writer(object):
                           "            type VARCHAR(20), \n"
                           "            PRIMARY KEY ( id ),\n"
                           "            FOREIGN KEY (pokemon) REFERENCES pokemon(id)\n"
-                          "            ) DEFAULT CHARACTER SET  utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n")
+                          "            ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n")
         cls.output_append(cls.moves_path,
                           "CREATE TABLE moves (id INT NOT NULL AUTO_INCREMENT, \n"
                           "            name VARCHAR(20), \n"
@@ -55,8 +56,15 @@ class Writer(object):
                           "            type VARCHAR(20), \n"
                           "            style VARCHAR(20), \n"
                           "            PRIMARY KEY ( id )\n"
-                          "            ) DEFAULT CHARACTER SET  utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n")
-
+                          "            ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n")
+        cls.output_append(cls.pkmn_mvs_path,
+                          "CREATE TABLE pkmn_mvs (id INT NOT NULL AUTO_INCREMENT, \n"
+                          "            pokemon INT, \n"
+                          "            move INT, \n"
+                          "            PRIMARY KEY ( id ), \n"
+                          "            FOREIGN KEY (pokemon) REFERENCES pokemon(id), \n"
+                          "            FOREIGN KEY (move) REFERENCES moves(id)\n"
+                          "            ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n")
         cls.output_append(cls.record_path,
                           "CREATE TABLE record (id INT NOT NULL AUTO_INCREMENT, \n"
                           "            pokemon INT, \n"
@@ -66,4 +74,4 @@ class Writer(object):
                           "            iv_stam INT, \n"
                           "            PRIMARY KEY ( id ),\n"
                           "            FOREIGN KEY (pokemon) REFERENCES pokemon(id)\n"
-                          "            ) DEFAULT CHARACTER SET  utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n")
+                          "            ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;\n\n")

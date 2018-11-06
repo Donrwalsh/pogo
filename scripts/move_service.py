@@ -3,6 +3,9 @@ class Move(object):
     def __init__(self, dict, **kwargs):
         self.data = dict
 
+    def get_id(self):
+        return self.data['id']
+
     def get_name(self):
         if "Blastoise" in self.data['name']:
             return "'" + self.data['name'].replace(" Blastoise", "").replace(" Fast", "") + "'"
