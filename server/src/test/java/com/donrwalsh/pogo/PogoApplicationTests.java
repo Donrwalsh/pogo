@@ -24,7 +24,7 @@ public class PogoApplicationTests {
 	@Test
 	public void findAllDexEntries() {
 		List<Pokemon> pokedex = pokemon.findAll();
-		assertEquals(404, pokedex.size());
+		assertEquals(552, pokedex.size());
 	}
 
 	@Test
