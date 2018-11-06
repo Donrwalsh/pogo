@@ -21,13 +21,47 @@ public class Pokemon {
     @JoinColumn(name = "pokemon")
     private List<Type> types;
 
-    public List<String> getTypes() {
-        ArrayList<String> output = new ArrayList<String>();
+    private int gen;
+    private boolean shiny;
 
-        for(int i = 0; i < types.size(); i++) {
-            output.add(types.get(i).getType());
-        }
-        return output;
+    public int getGen() {
+        return gen;
+    }
+
+    public void setGen(int gen) {
+        this.gen = gen;
+    }
+
+    public boolean isShiny() {
+        return shiny;
+    }
+
+    public void setShiny(boolean shiny) {
+        this.shiny = shiny;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "from_id")
+    private List<Evolution> from_evolutions;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "to_id")
+    private List<Evolution> to_evolutions;
+
+    public List<Evolution> getTo_evolutions() { return to_evolutions; }
+
+    public void setTo_evolutions(List<Evolution> to_evolutions) { this.to_evolutions = to_evolutions; }
+
+    public List<Evolution> getFrom_evolutions() {
+        return from_evolutions;
+    }
+
+    public void setFrom_evolutions(List<Evolution> from_evolutions) {
+        this.from_evolutions = from_evolutions;
+    }
+
+    public List<Type> getTypes() {
+        return this.types;
     }
 
     public void setTypes(List<Type> types) {

@@ -1,2 +1,7 @@
 .DS_Store
 *.DS_Store
+.vagrant/
+pogo.box
+scripts/.idea
+scripts/venv
+scripts/__pycache__
