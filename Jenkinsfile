@@ -17,6 +17,14 @@ pipeline {
 						}
 					}
 				}
+				dir("server") {
+                    sh 'mvn clean install -Dspring.profiles.active=prod'
+					
+					dir("target") {
+						stash includes: 'pogo-0.0.1.jar', name: 'JAR'
+						archiveArtifacts artifacts: '*.jar', fingerprint:true
+					}
+				}
             }
         }
     }
