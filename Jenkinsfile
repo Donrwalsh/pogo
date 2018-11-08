@@ -9,6 +9,14 @@ pipeline {
 				    sh 'docker-compose up -d'
 				    stash includes: '**/*', name: 'database'
 				}
+				script {
+					timeout(5) {
+						waitUntil {
+							def r = sh returnStdout: true, script: 'docker inspect -f {{.State.Running}} database'
+							return r.contains("true");
+						}
+					}
+				}
             }
         }
     }
