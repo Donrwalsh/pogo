@@ -3,6 +3,16 @@ import json
 from pokemon_service import Pokemon
 from writer_service import Writer
 from move_service import Move
+from control import SQL
+
+
+#Fetch Latest Game_Master Files
+
+
+species_table = SQL.tables[0]
+moves_table = SQL.tables[1]
+types_table = SQL.tables[2]
+pkmn_mvs_table = SQL.tables[3]
 
 Writer.clean()
 Writer.init()
@@ -15,8 +25,8 @@ for i in range(len(moves)):
     move = Move(moves[i])
     move_ids.append(move.get_id())
     move_names.append(move.get_name())
-    Writer.output_append(Writer.moves_path,
-                         "INSERT INTO moves VALUES(" +
+    Writer.output_append(moves_table["path"],
+                         moves_table["insert"] +
                          str(i+1) + ", " +
                          move.get_name() + ", " +
                          move.get_power() + ", " +
@@ -33,8 +43,8 @@ b = 0 #moves counter
 for i in range(len(data)):
     pokemon = Pokemon(data[i])
 
-    Writer.output_append(Writer.zero_path,
-                         "INSERT INTO pokemon VALUES (" +
+    Writer.output_append(species_table["path"],
+                         species_table["insert"] +
                           str(i+1) + ", " +
                           pokemon.get_dex() + ", " +
                           pokemon.get_name() + ", " +
@@ -47,24 +57,24 @@ for i in range(len(data)):
                           pokemon.get_shiny() + ");\n")
     for j in range(len(data[i]['types'])):
         a += 1
-        Writer.output_append(Writer.types_path,
-                             "INSERT INTO types VALUES(" +
+        Writer.output_append(types_table["path"],
+                             types_table["insert"] +
                               str(a) + ", " +
                               str(i+1) + ", " +
                               pokemon.get_type(j) + ");\n")
     for k in range(len(data[i]['cinematicMoves'])):
         b += 1
         move_id = move_ids.index(data[i]['cinematicMoves'][k]['id'])+1
-        Writer.output_append(Writer.pkmn_mvs_path,
-                             "INSERT INTO pkmn_mvs VALUES (" +
+        Writer.output_append(pkmn_mvs_table["path"],
+                             pkmn_mvs_table["insert"] +
                              str(b) + ", " +
                              str(i+1) + ", " +
                              str(move_id) + ");\n")
     for l in range(len(data[i]['quickMoves'])):
         b += 1
         move_id = move_ids.index(data[i]['quickMoves'][l]['id'])+1
-        Writer.output_append(Writer.pkmn_mvs_path,
-                             "INSERT INTO pkmn_mvs VALUES (" +
+        Writer.output_append(pkmn_mvs_table["path"],
+                             pkmn_mvs_table["insert"] +
                              str(b) + ", " +
                              str(i + 1) + ", " +
                              str(move_id) + ");\n")
