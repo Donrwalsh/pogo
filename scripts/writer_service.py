@@ -1,5 +1,6 @@
 import os
 from control import SQL
+from loguru import logger
 
 def remove_if_exists(path):
     if os.path.exists(path):
@@ -9,7 +10,9 @@ class Writer(object):
 
     @classmethod
     def clean(cls):
+        logger.info("Deleting existing SQL files.")
         for table in SQL.tables:
+            logger.info("Deleting " + table["path"])
             remove_if_exists(table["path"])
 
     @classmethod
@@ -20,6 +23,8 @@ class Writer(object):
 
     @classmethod
     def init(cls):
+        logger.info("Initiating SQL files.")
         for table in SQL.tables:
+            logger.info("Initiating " + table["path"])
             cls.output_append(table["path"], table["create"])
 

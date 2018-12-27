@@ -1,8 +1,8 @@
 CREATE TABLE pkmn_mvs (id INT NOT NULL AUTO_INCREMENT, 
-            pokemon INT, 
+            species INT, 
             move INT, 
             PRIMARY KEY ( id ), 
-            FOREIGN KEY (pokemon) REFERENCES pokemon(id), 
+            FOREIGN KEY (species) REFERENCES species(id), 
             FOREIGN KEY (move) REFERENCES moves(id)
             ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

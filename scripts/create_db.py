@@ -5,16 +5,19 @@ from writer_service import Writer
 from move_service import Move
 from source_service import Source
 from control import SQL
+from loguru import logger
 
+#Logged
+logger.info("Database will be created.")
+Source.init()
+Writer.clean()
+Writer.init()
 
+#Unlogged
 species_table = SQL.tables[0]
 moves_table = SQL.tables[1]
 types_table = SQL.tables[2]
 pkmn_mvs_table = SQL.tables[3]
-
-Source.init()
-Writer.clean()
-Writer.init()
 
 with open('master/move.json') as m:
     moves = json.load(m)
@@ -50,10 +53,7 @@ for i in range(len(data)):
                           pokemon.get_atk() + ", " +
                           pokemon.get_def() + ", " +
                           pokemon.get_stam() + ", " +
-                          pokemon.get_maxCP() + ", " +
-                          pokemon.get_gen() + ", " +
-                          pokemon.get_exists() + ", " +
-                          pokemon.get_shiny() + ");\n")
+                          pokemon.get_maxCP() + ");\n")
     for j in range(len(data[i]['types'])):
         a += 1
         Writer.output_append(types_table["path"],
