@@ -1,3 +1,12 @@
+class SOURCE(object):
+
+    master_files = [
+        {"url": "https://raw.githubusercontent.com/pokemongo-dev-contrib/pokemongo-json-pokedex/master/output/pokemon.json",
+         "path": "master/pokemon.json"},
+        {"url": "https://raw.githubusercontent.com/pokemongo-dev-contrib/pokemongo-json-pokedex/master/output/move.json",
+         "path": "master/move.json"}
+    ]
+
 class SQL(object):
 
     tables = [

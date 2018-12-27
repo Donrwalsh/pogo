@@ -3,10 +3,8 @@ import json
 from pokemon_service import Pokemon
 from writer_service import Writer
 from move_service import Move
+from source_service import Source
 from control import SQL
-
-
-#Fetch Latest Game_Master Files
 
 
 species_table = SQL.tables[0]
@@ -14,6 +12,7 @@ moves_table = SQL.tables[1]
 types_table = SQL.tables[2]
 pkmn_mvs_table = SQL.tables[3]
 
+Source.init()
 Writer.clean()
 Writer.init()
 
